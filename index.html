@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-Paper-Scissors</title>
+    <style>
+        body{
+            background-color: black;
+            color: white;
+        }
+        button img{
+            height: 25px;
+        }
+
+        .buttonEmojis{
+            background-color: black;
+            padding: 20px;
+            border: 1px solid white;
+            color: white;
+            border-radius: 50px;
+        }
+
+    </style>
+</head>
+<body>
+    <h4>Rock Paper Scissors</h4>
+    <button  class="buttonEmojis" id="rock"><img src="images/rock-emoji.png"></button>
+    <button class="buttonEmojis" id="paper"><img src="images/paper-emoji.png"></button>
+    <button class="buttonEmojis" id="scissors"><img src="images/scissors-emoji.png"></button><br><br>
+
+    You<p class="your-choice"></p>
+    Computer<p class="computer-choice"></p>
+
+    <p class="win-loss-tie"></p>
+
+
+    wins: <p id="wins"></p>
+    losses: <p id="losses"></p>
+    ties: <p id="ties"></p>
+
+    <button id="reset">Reset</button>
+
+
+    <script>
+        const rock = document.getElementById("rock");
+        const paper = document.getElementById("paper");
+        const scissors = document.getElementById("scissors");
+        const reset = document.getElementById("reset");
+
+        const possibleMoves = ['rock','paper','scissors']
+
+        const score = {wins:0,losses:0,ties:0}
+
+        let result;
+
+        paper.addEventListener('click',function(){
+
+            let computerMove = possibleMoves[Math.floor(Math.random()*3)];
+
+            document.querySelector('.your-choice').innerHTML = '<img src="images/paper-emoji.png" style="width:25px">';
+
+            if (computerMove === 'paper'){
+                score.ties = score.ties+1;
+                result = "It's a tie";
+                document.querySelector('.win-loss-tie').innerHTML = result;
+                document.getElementById('ties').innerHTML=score.ties;
+                document.querySelector('.computer-choice').innerHTML = '<img src="images/paper-emoji.png" style="width:25px">';
+                
+                
+            }
+            else if(computerMove === 'rock'){
+                score.wins = score.wins+1;
+                result='You Win, Computer Loses.';
+                document.querySelector('.win-loss-tie').innerHTML = result;
+                document.getElementById('wins').innerHTML= score.wins;
+                document.querySelector('.computer-choice').innerHTML = '<img src="images/rock-emoji.png" style="width:25px">';
+                
+            }
+            else if(computerMove === 'scissors'){
+                score.losses = score.losses+1;
+                result = "You Lose, Computer Wins.";
+                document.querySelector('.win-loss-tie').innerHTML = result;
+                document.getElementById('losses').innerHTML = score.losses;
+                document.querySelector('.computer-choice').innerHTML = '<img src="images/scissors-emoji.png" style="width:25px">';
+                
+            }
+
+        });
+
+        rock.addEventListener('click',function(){
+
+            let computerMove = possibleMoves[Math.floor(Math.random()*3)];
+
+            document.querySelector('.your-choice').innerHTML = '<img src="images/rock-emoji.png" style="width:25px">';
+
+            if (computerMove === 'paper'){
+                score.losses = score.losses+1;
+                result = "You Lose, Computer Wins.";
+                document.querySelector('.win-loss-tie').innerHTML = result;
+                document.getElementById('losses').innerHTML = score.losses;
+                document.querySelector('.computer-choice').innerHTML = '<img src="images/paper-emoji.png" style="width:25px">';
+            }
+            else if(computerMove === 'rock'){
+                score.ties = score.ties+1;
+                result = "It's a tie";
+                document.querySelector('.win-loss-tie').innerHTML = result;
+                document.getElementById('ties').innerHTML=score.ties;
+                document.querySelector('.computer-choice').innerHTML = '<img src="images/rock-emoji.png" style="width:25px">';
+            }
+            else if(computerMove === 'scissors'){
+                score.wins = score.wins+1;
+                result='You Win, Computer Loses.';
+                document.querySelector('.win-loss-tie').innerHTML = result;
+                document.getElementById('wins').innerHTML= score.wins;
+                document.querySelector('.computer-choice').innerHTML = '<img src="images/scissors-emoji.png" style="width:25px">';
+            }
+
+        })
+
+        scissors.addEventListener('click',function(){
+
+            let computerMove = possibleMoves[Math.floor(Math.random()*3)];
+
+            document.querySelector('.your-choice').innerHTML = '<img src="images/scissors-emoji.png" style="width:25px">';
+
+
+            if (computerMove === 'paper'){
+                score.wins = score.wins+1;
+                result='You Win, Computer Loses.';
+                document.querySelector('.win-loss-tie').innerHTML = result;
+                document.getElementById('wins').innerHTML=score.wins;
+                document.querySelector('.computer-choice').innerHTML = '<img src="images/paper-emoji.png" style="width:25px">';
+            }
+            else if(computerMove === 'rock'){                
+                score.losses = score.losses+1;
+                result = "You Lose, Computer Wins.";
+                document.querySelector('.win-loss-tie').innerHTML = result;
+                document.getElementById('losses').innerHTML =score.losses;
+                document.querySelector('.computer-choice').innerHTML = '<img src="images/rock-emoji.png" style="width:25px">';
+            }
+            else if(computerMove === 'scissors'){
+                score.ties = score.ties+1;
+                result = "It's a tie";
+                document.querySelector('.win-loss-tie').innerHTML = result;
+                document.getElementById('ties').innerHTML=score.ties;
+                document.querySelector('.computer-choice').innerHTML = '<img src="images/scissors-emoji.png" style="width:25px">';
+            }
+
+        })
+
+
+
+        reset.addEventListener('click',function(){
+            score.ties = 0;
+            score.losses = 0;
+            score.wins = 0;
+
+            document.getElementById('ties').innerHTML = score.ties;
+            document.getElementById('losses').innerHTML = score.losses;
+            document.getElementById('wins').innerHTML = score.wins;
+
+        })
+
+    </script>
+</body>
+</html>
